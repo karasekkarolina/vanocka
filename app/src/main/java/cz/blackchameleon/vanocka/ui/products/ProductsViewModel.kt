@@ -2,6 +2,7 @@ package cz.blackchameleon.vanocka.ui.products
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import cz.blackchameleon.domain.Product
 import cz.blackchameleon.vanocka.ui.base.BaseViewModel
 
 /**
@@ -14,4 +15,9 @@ class ProductsViewModel : BaseViewModel() {
         value = "This is home Fragment"
     }
     val text: LiveData<String> = _text
+
+    fun onProductClicked(product: Product) {
+
+    }
+
 }

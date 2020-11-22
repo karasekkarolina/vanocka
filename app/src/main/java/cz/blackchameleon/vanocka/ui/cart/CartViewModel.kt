@@ -3,6 +3,7 @@ package cz.blackchameleon.vanocka.ui.cart
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import cz.blackchameleon.domain.Product
 import cz.blackchameleon.vanocka.ui.base.BaseViewModel
 
 /**
@@ -15,4 +16,9 @@ class CartViewModel : BaseViewModel() {
         value = "This is dashboard Fragment"
     }
     val text: LiveData<String> = _text
+
+    fun onProductClicked(product: Product) {
+
+    }
+
 }
