@@ -1,14 +1,13 @@
-package cz.blackchameleon.vanocka.ui.home
+package cz.blackchameleon.vanocka.ui.products
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import cz.blackchameleon.vanocka.ui.base.BaseViewModel
 
 /**
- * @author Karolina Klepackova on 21.11.2020.
+ * @author Karolina Klepackova on 22.11.2020.
  */
-
-class HomeViewModel : ViewModel() {
+class ProductDetailViewModel : BaseViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is home Fragment"

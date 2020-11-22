@@ -5,5 +5,10 @@ package cz.blackchameleon.vanocka
  */
 
 object UrlConst {
-  const val BASE_URL: String = "http://private-9aad-note10.apiary-mock.com/"
+    const val BASE_URL: String = "https://private-569143-vanocka.apiary-mock.com"
+    /*
+  https://private-569143-vanocka.apiary-mock.com/cart
+  https://private-569143-vanocka.apiary-mock.com/me
+  https://private-569143-vanocka.apiary-mock.com/products/123
+     */
 }

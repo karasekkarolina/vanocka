@@ -1,25 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/mobile_navigation"
-        app:startDestination="@+id/navigation_home">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/navigation_products">
 
     <fragment
-            android:id="@+id/navigation_home"
-            android:name="cz.blackchameleon.vanocka.ui.home.HomeFragment"
-            android:label="@string/title_home"
-            tools:layout="@layout/fragment_home" />
+        android:id="@+id/navigation_products"
+        android:name="cz.blackchameleon.vanocka.ui.products.ProductsFragment"
+        android:label="@string/title_products"
+        tools:layout="@layout/fragment_products" />
 
     <fragment
-            android:id="@+id/navigation_dashboard"
-            android:name="cz.blackchameleon.vanocka.ui.dashboard.DashboardFragment"
-            android:label="@string/title_dashboard"
-            tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_cart"
+        android:name="cz.blackchameleon.vanocka.ui.cart.CartFragment"
+        android:label="@string/title_cart"
+        tools:layout="@layout/fragment_cart" />
 
     <fragment
-            android:id="@+id/navigation_notifications"
-            android:name="cz.blackchameleon.vanocka.ui.notifications.NotificationsFragment"
-            android:label="@string/title_notifications"
-            tools:layout="@layout/fragment_notifications" />
+        android:id="@+id/navigation_profile"
+        android:name="cz.blackchameleon.vanocka.ui.profile.ProfileFragment"
+        android:label="@string/title_profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <action
+        android:id="@+id/action_product_detail_fragment"
+        app:destination="@+id/navigation_product_detail_fragment" />
+
+    <dialog
+        android:id="@+id/navigation_product_detail_fragment"
+        android:name="cz.blackchameleon.vanocka.ui.products.ProductDetailFragment"
+        android:label="@string/title_product_detail"
+        tools:layout="@layout/fragment_product_detail">
+        <argument
+            android:name="id"
+            app:argType="string" />
+    </dialog>
 </navigation>
