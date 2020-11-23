@@ -11,7 +11,7 @@ import org.koin.dsl.module
  */
 
 val viewModelModule = module {
-    viewModel { CartViewModel() }
+    viewModel { CartViewModel(get()) }
     viewModel { ProductsViewModel() }
     viewModel { ProfileViewModel() }
 }

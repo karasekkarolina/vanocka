@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="?android:selectableItemBackground"
@@ -9,7 +10,7 @@
     android:padding="@dimen/margin_padding_small">
 
     <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/riv_background_image"
+        android:id="@+id/product_image"
         android:layout_width="100dp"
         android:layout_height="150dp"
         android:adjustViewBounds="true"
@@ -18,4 +19,93 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:riv_corner_radius="10dp" />
+
+    <TextView
+        android:id="@+id/product_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_padding_normal"
+        android:layout_marginEnd="@dimen/margin_padding_small"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textSize="@dimen/text_size_large"
+        app:layout_constraintEnd_toStartOf="@id/amount_arrow_up"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/product_image"
+        app:layout_constraintTop_toTopOf="@id/product_image"
+        tools:text="@tools:sample/lorem/random" />
+
+    <TextView
+        android:id="@+id/product_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_padding_small"
+        android:layout_marginEnd="@dimen/margin_padding_small"
+        android:ellipsize="end"
+        android:maxLines="3"
+        app:layout_constraintEnd_toStartOf="@id/amount_arrow_up"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="@id/product_name"
+        app:layout_constraintTop_toBottomOf="@id/product_name"
+        tools:text="@tools:sample/lorem/random" />
+
+    <TextView
+        android:id="@+id/product_price"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_padding_normal"
+        android:layout_marginTop="@dimen/margin_padding_small"
+        android:textAlignment="viewEnd"
+        android:textSize="@dimen/text_size_large"
+        app:layout_constraintEnd_toStartOf="@id/product_unit"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/product_image"
+        app:layout_constraintTop_toBottomOf="@id/product_title"
+        tools:text="400" />
+
+    <TextView
+        android:id="@+id/product_unit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_padding_small"
+        android:layout_marginEnd="@dimen/margin_padding_small"
+        android:text="@string/product_unit"
+        android:textSize="@dimen/text_size_large"
+        app:layout_constraintBottom_toBottomOf="@id/product_price"
+        app:layout_constraintEnd_toStartOf="@id/amount_arrow_up"
+        app:layout_constraintStart_toEndOf="@id/product_price" />
+
+    <ImageButton
+        android:id="@+id/amount_arrow_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_up"
+        app:layout_constraintBottom_toTopOf="@id/product_amount"
+        app:layout_constraintEnd_toEndOf="@id/product_amount"
+        app:layout_constraintStart_toStartOf="@id/product_amount"
+        app:layout_constraintTop_toTopOf="@id/product_image" />
+
+    <TextView
+        android:id="@+id/product_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/margin_padding_small"
+        android:layout_marginEnd="@dimen/margin_padding_small"
+        android:padding="@dimen/margin_padding_small"
+        android:textSize="@dimen/text_size_large"
+        app:layout_constraintBottom_toTopOf="@id/amount_arrow_down"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/product_unit"
+        app:layout_constraintTop_toBottomOf="@id/amount_arrow_up"
+        tools:text="2" />
+
+    <ImageButton
+        android:id="@+id/amount_arrow_down"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_down"
+        app:layout_constraintBottom_toBottomOf="@id/product_image"
+        app:layout_constraintEnd_toEndOf="@id/product_amount"
+        app:layout_constraintStart_toStartOf="@id/product_amount"
+        app:layout_constraintTop_toBottomOf="@id/product_amount" />
 </androidx.constraintlayout.widget.ConstraintLayout>

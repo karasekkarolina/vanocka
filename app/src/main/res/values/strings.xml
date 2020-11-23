@@ -6,6 +6,7 @@
 
     <!-- Products -->
     <string name="title_products">Products</string>
+    <string name="product_unit">za %s</string>
 
     <!-- Cart -->
     <string name="title_cart">Cart</string>
