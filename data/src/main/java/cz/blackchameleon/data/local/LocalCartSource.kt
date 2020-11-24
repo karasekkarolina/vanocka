@@ -9,5 +9,7 @@ import cz.blackchameleon.domain.CartItem
 interface LocalCartSource {
     suspend fun getCartItems(): List<CartItem>?
 
-    suspend fun saveCartItems(cartItems: List<CartItem>)
+    suspend fun saveCartItem(cartItem: CartItem)
+
+    suspend fun clean()
 }

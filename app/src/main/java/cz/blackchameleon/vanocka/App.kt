@@ -1,10 +1,7 @@
 package cz.blackchameleon.vanocka
 
 import android.app.Application
-import cz.blackchameleon.vanocka.di.dataModule
-import cz.blackchameleon.vanocka.di.retrofitModule
-import cz.blackchameleon.vanocka.di.useCaseModule
-import cz.blackchameleon.vanocka.di.viewModelModule
+import cz.blackchameleon.vanocka.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 import timber.log.Timber
@@ -34,7 +31,9 @@ class App : Application() {
                     viewModelModule,
                     dataModule,
                     useCaseModule,
-                    retrofitModule
+                    retrofitModule,
+                    localModule,
+                    remoteModule
                 )
             )
         }

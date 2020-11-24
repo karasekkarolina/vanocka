@@ -1,6 +1,7 @@
 package cz.blackchameleon.data.repository
 
 import cz.blackchameleon.data.LocalResult
+import cz.blackchameleon.data.RemoteResult
 import cz.blackchameleon.data.local.LocalCartSource
 import cz.blackchameleon.data.remote.RemoteCartSource
 import cz.blackchameleon.domain.CartItem
@@ -18,13 +19,25 @@ class CartRepository(
             return LocalResult.Success(it)
         }
 
-        val cartItems = remoteCartSource.fetchCartItems()
-        return cartItems.data?.let {
-          LocalResult.Success(it)
-        } ?: LocalResult.Error(cartItems.error)
+        return when (val result = remoteCartSource.fetchCartItems()) {
+            is RemoteResult.Success -> {
+                LocalResult.Success(result.data)
+            }
+            is RemoteResult.Error -> {
+                LocalResult.Error(result.error.originalException.message)
+            }
+        }
     }
 
     suspend fun saveCartItems(cartItems: List<CartItem>) {
-        localCartSource.saveCartItems(cartItems)
+        cartItems.forEach {
+            saveCartItem(it)
+        }
     }
+
+    suspend fun saveCartItem(cartItem: CartItem) {
+        localCartSource.saveCartItem(cartItem)
+    }
+
+    suspend fun clean() = localCartSource.clean()
 }

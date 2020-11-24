@@ -1,4 +1,4 @@
-package cz.blackchameleon.usecases
+package cz.blackchameleon.usecases.cart
 
 import cz.blackchameleon.data.LocalResult
 import cz.blackchameleon.data.repository.CartRepository

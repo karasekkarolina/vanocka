@@ -4,12 +4,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import cz.blackchameleon.data.LocalResult
 import cz.blackchameleon.domain.CartItem
-import cz.blackchameleon.usecases.GetCartItems
+import cz.blackchameleon.usecases.cart.GetCartItems
 import cz.blackchameleon.vanocka.ui.base.BaseViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import timber.log.Timber
 
 /**
  * @author Karolina Klepackova on 21.11.2020.
@@ -20,7 +19,7 @@ class CartViewModel(
 ) : BaseViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "This is cart items fragment"
     }
     val text: LiveData<String> = _text
 

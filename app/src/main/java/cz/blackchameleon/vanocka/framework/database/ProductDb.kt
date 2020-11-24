@@ -3,6 +3,7 @@ package cz.blackchameleon.vanocka.framework.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import cz.blackchameleon.domain.Product
 
 /**
  * @author Karolina Klepackova on 23.11.2020.
@@ -10,7 +11,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "products")
 open class ProductDb(
     @PrimaryKey
-    var id: String,
+    open var id: String,
     @ColumnInfo(name = "name")
     var name: String,
     @ColumnInfo(name = "title")
@@ -21,4 +22,13 @@ open class ProductDb(
     var price: Float,
     @ColumnInfo(name = "unit")
     var unit: String
-)
+) {
+    fun toProduct(): Product = Product(
+        id = this.id,
+        name = this.name,
+        title = this.title,
+        thumbnail_image = this.thumbnail_image,
+        price = this.price,
+        unit = this.unit
+    )
+}

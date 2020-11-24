@@ -7,7 +7,9 @@ import cz.blackchameleon.domain.Product
  */
 
 interface LocalProductSource {
-    suspend fun getProduct(): Product?
+    suspend fun getProduct(id: String): Product?
+
+    suspend fun getAllProducts(): List<Product>?
 
     suspend fun saveProduct(product: Product)
 
