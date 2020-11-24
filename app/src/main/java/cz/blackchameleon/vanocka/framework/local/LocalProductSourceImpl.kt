@@ -31,7 +31,7 @@ class LocalProductSourceImpl(
         product.run {
             productDao?.insert(
                 ProductDb(
-                    id, name, title, thumbnail_image, price, unit
+                    id, name, title, image, price, unit
                 )
             )
         }

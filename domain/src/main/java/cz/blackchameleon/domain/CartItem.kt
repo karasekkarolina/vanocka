@@ -16,7 +16,7 @@ class CartItem(
     id = id,
     name = name,
     title = title,
-    thumbnail_image = thumbnail_image,
+    image = thumbnail_image,
     price = price,
     unit = unit
 ) {

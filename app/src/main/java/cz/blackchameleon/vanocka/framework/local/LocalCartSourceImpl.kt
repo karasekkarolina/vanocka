@@ -27,7 +27,7 @@ class LocalCartSourceImpl(
         cartItem.run {
             cartItemDao?.insert(
                 CartItemDb(
-                    id, name, title, thumbnail_image, amount, price, unit
+                    id, name, title, image, amount, price, unit
                 )
             )
         }

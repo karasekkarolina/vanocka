@@ -38,7 +38,7 @@ class CartAdapter(
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: CartItem) {
             itemView.apply {
-                product_image.setImage(item.thumbnail_image)
+                product_image.setImage(item.image)
                 product_name.text = item.name
                 product_title.viewTreeObserver.apply {
                     addOnGlobalLayoutListener {

@@ -1,6 +1,7 @@
 package cz.blackchameleon.vanocka.framework
 
-import cz.blackchameleon.domain.CartItem
+import cz.blackchameleon.vanocka.framework.remote.CartItemMo
+import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 
 /**
@@ -10,5 +11,5 @@ interface CartApi {
 
     // Returns cart items list
     @GET("/cart")
-    suspend fun getCartItems(): List<CartItem>
+    fun getCartItems(): Single<List<CartItemMo>>
 }

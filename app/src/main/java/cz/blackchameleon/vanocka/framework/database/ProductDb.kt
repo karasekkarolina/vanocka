@@ -27,7 +27,7 @@ open class ProductDb(
         id = this.id,
         name = this.name,
         title = this.title,
-        thumbnail_image = this.thumbnail_image,
+        image = this.thumbnail_image,
         price = this.price,
         unit = this.unit
     )

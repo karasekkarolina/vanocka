@@ -1,6 +1,7 @@
 package cz.blackchameleon.vanocka.di
 
 import cz.blackchameleon.usecases.cart.GetCartItems
+import cz.blackchameleon.usecases.cart.GetProduct
 import cz.blackchameleon.usecases.cart.StoreCartItems
 import org.koin.dsl.module
 
@@ -10,4 +11,5 @@ import org.koin.dsl.module
 val useCaseModule = module {
     single { GetCartItems(get()) }
     single { StoreCartItems(get()) }
+    single { GetProduct(get()) }
 }
