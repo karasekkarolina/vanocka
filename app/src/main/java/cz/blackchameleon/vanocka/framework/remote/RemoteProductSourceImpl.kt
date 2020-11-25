@@ -14,4 +14,13 @@ class RemoteProductSourceImpl(private val productApi: ProductApi) : RemoteProduc
         productApi.getProduct()
             .map { it.toProduct() }
             .subscribeOn(Schedulers.io())
+
+    override suspend fun fetchProducts(): Single<List<Product>> =
+        productApi.getProducts()
+            .map { list ->
+                list.map {
+                    it.toProduct()
+                }
+            }
+            .subscribeOn(Schedulers.io())
 }

@@ -12,7 +12,7 @@ import androidx.room.RoomDatabase
     entities = [
         CartItemDb::class,
         ProductDb::class
-    ], exportSchema = false, version = 1
+    ], exportSchema = false, version = 2
 )
 abstract class VanockaDatabase : RoomDatabase() {
 

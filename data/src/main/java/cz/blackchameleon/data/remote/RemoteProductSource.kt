@@ -9,4 +9,6 @@ import io.reactivex.rxjava3.core.Single
 
 interface RemoteProductSource {
     suspend fun fetchProduct() : Single<Product>
+
+    suspend fun fetchProducts() : Single<List<Product>>
 }

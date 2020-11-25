@@ -32,11 +32,19 @@ class ProductRepository(
             }
         }
 
-    suspend fun getAllProducts(): LocalResult<List<Product>> {
-        return localProductSource.getAllProducts()?.let {
-            LocalResult.Success(it)
-        } ?: LocalResult.Error("No project items found")
-    }
+    suspend fun getAllProducts(): LocalResult<List<Product>> =
+        withContext(coroutineContext) {
+            localProductSource.getAllProducts()?.let {
+                return@withContext LocalResult.Success(it)
+            }
+
+            try {
+                val products = remoteProductSource.fetchProducts().blockingGet()
+                return@withContext LocalResult.Success(products)
+            } catch (e: RuntimeException) {
+                return@withContext LocalResult.Error<List<Product>>(e.message)
+            }
+        }
 
     suspend fun saveProducts(products: List<Product>) {
         products.forEach {

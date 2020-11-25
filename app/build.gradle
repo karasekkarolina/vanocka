@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'androidx.navigation.safeargs'
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
 }
@@ -40,7 +41,6 @@ dependencies {
     implementation project(':data')
     implementation project(':domain')
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     implementation "androidx.core:core-ktx:$androidx_core_version"
     implementation "com.google.android.material:material:$material_version"

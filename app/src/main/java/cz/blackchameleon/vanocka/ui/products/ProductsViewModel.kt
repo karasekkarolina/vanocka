@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import cz.blackchameleon.data.LocalResult
 import cz.blackchameleon.domain.Product
-import cz.blackchameleon.usecases.products.GetProduct
+import cz.blackchameleon.usecases.products.GetProducts
 import cz.blackchameleon.vanocka.ui.base.BaseViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -15,35 +15,25 @@ import kotlinx.coroutines.launch
  */
 
 class ProductsViewModel(
-    private val getProduct: GetProduct
+    private val getProducts: GetProducts
 ) : BaseViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
-    }
-    val text: LiveData<String> = _text
-
-    private val _product: MutableLiveData<Product> = MutableLiveData()
-    val product: LiveData<Product> = _product
-
-    fun onProductClicked(product: Product) {
-
-    }
+    private val _products: MutableLiveData<List<Product>> = MutableLiveData()
+    val products: LiveData<List<Product>> = _products
 
     init {
-        initProduct()
+        initData()
     }
 
-
-    private fun initProduct() {
+    private fun initData() {
         CoroutineScope(Dispatchers.IO).launch {
-            getProduct().let {
+            getProducts().let {
                 when (it) {
                     is LocalResult.Success -> {
-                        _product.postValue(it.data)
+                        _products.postValue(it.data)
                     }
                     is LocalResult.Error -> {
-
+                        _showError.postValue(it.error)
                     }
                 }
             }

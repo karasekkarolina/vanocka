@@ -13,4 +13,8 @@ interface ProductApi {
     // Returns product by id
     @GET("/products/{id}")
     fun getProduct(): Single<ProductMo>
+
+    // Returns all products
+    @GET("/products")
+    fun getProducts(): Single<List<ProductMo>>
 }

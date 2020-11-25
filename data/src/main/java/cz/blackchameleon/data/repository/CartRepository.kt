@@ -1,7 +1,6 @@
 package cz.blackchameleon.data.repository
 
 import cz.blackchameleon.data.LocalResult
-import cz.blackchameleon.data.RemoteResult
 import cz.blackchameleon.data.local.LocalCartSource
 import cz.blackchameleon.data.remote.RemoteCartSource
 import cz.blackchameleon.domain.CartItem

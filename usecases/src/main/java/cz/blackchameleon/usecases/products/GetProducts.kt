@@ -7,8 +7,8 @@ import cz.blackchameleon.domain.Product
 /**
  * @author Karolina Klepackova on 24.11.2020.
  */
-class GetProduct(
+class GetProducts(
     private val productRepository: ProductRepository
 ) {
-    suspend operator fun invoke(id: String): LocalResult<Product> = productRepository.getProduct(id)
+    suspend operator fun invoke(): LocalResult<List<Product>> = productRepository.getAllProducts()
 }
