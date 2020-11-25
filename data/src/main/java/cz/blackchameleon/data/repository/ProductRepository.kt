@@ -39,6 +39,7 @@ class ProductRepository(
 
             try {
                 val products = remoteProductSource.fetchProducts().blockingGet()
+                saveProducts(products)
                 return@withContext LocalResult.Success(products)
             } catch (e: RuntimeException) {
                 return@withContext LocalResult.Error<List<Product>>(e.message)

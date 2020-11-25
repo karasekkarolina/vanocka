@@ -26,6 +26,7 @@ class CartRepository(
 
             try {
                 val cartItems = remoteCartSource.fetchCartItems().blockingGet()
+                saveCartItems(cartItems)
                 return@withContext LocalResult.Success(cartItems)
             } catch (e: RuntimeException) {
                 return@withContext LocalResult.Error<List<CartItem>>(e.message)

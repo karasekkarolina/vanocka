@@ -22,8 +22,9 @@ class ProfileRepository(
             }
 
             try {
-                val product = remoteProfileSource.fetchProfile().blockingGet()
-                return@withContext LocalResult.Success(product)
+                val profile = remoteProfileSource.fetchProfile().blockingGet()
+                saveProfile(profile)
+                return@withContext LocalResult.Success(profile)
             } catch (e: RuntimeException) {
                 return@withContext LocalResult.Error<Profile>(e.message)
             }
