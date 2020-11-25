@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import cz.blackchameleon.data.LocalResult
 import cz.blackchameleon.domain.Product
 import cz.blackchameleon.usecases.products.GetProduct
+import cz.blackchameleon.vanocka.R
 import cz.blackchameleon.vanocka.ui.base.BaseViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -36,11 +37,11 @@ class ProductDetailViewModel(
                             _product.postValue(it.data)
                         }
                         is LocalResult.Error -> {
-                            _showError.postValue(it.error)
+                            _showError.postValue(R.string.product_loading_failed)
                         }
                     }
                 }
-            } ?: LocalResult.Error<Product>("No product id found")
+            } ?: _showError.postValue(R.string.product_loading_failed)
         }
         stopLoading()
     }

@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import cz.blackchameleon.data.LocalResult
 import cz.blackchameleon.domain.Product
 import cz.blackchameleon.usecases.products.GetProducts
+import cz.blackchameleon.vanocka.R
 import cz.blackchameleon.vanocka.ui.base.BaseViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -34,7 +35,7 @@ class ProductsViewModel(
                         _products.postValue(it.data)
                     }
                     is LocalResult.Error -> {
-                        _showError.postValue(it.error)
+                        _showError.postValue(R.string.products_loading_failed)
                     }
                 }
             }

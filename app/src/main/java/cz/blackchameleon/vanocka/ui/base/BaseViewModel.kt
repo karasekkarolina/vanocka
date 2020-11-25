@@ -9,8 +9,8 @@ import androidx.lifecycle.ViewModel
  */
 
 abstract class BaseViewModel : ViewModel() {
-    protected val _showError: MutableLiveData<String> = MutableLiveData()
-    val showError: LiveData<String> = _showError
+    protected val _showError: MutableLiveData<Int> = MutableLiveData()
+    val showError: LiveData<Int> = _showError
 
     private val _loading: MutableLiveData<Boolean> = MutableLiveData()
     val loading: LiveData<Boolean> = _loading

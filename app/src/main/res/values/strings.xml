@@ -8,9 +8,12 @@
     <!-- Products -->
     <string name="title_products">Products</string>
     <string name="product_unit">za %s</string>
+    <string name="product_loading_failed">Product loading failed</string>
+    <string name="products_loading_failed">Products loading failed</string>
 
     <!-- Cart -->
     <string name="title_cart">Cart</string>
+    <string name="cart_items_loading_failed">Cart items loading failed</string>
 
     <!-- Profile -->
     <string name="title_profile">Profile</string>
@@ -21,5 +24,6 @@
     <string name="profile_edit">Edit profile</string>
     <string name="profile_delete">Delete profile</string>
     <string name="does_nothing">Does nothing</string>
+    <string name="profile_loading_failed">Profile loading failed</string>
 
 </resources>

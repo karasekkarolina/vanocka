@@ -26,6 +26,7 @@
         <item name="android:textColor">@color/text_secondary</item>
         <item name="android:textColorPrimary">@color/text_primary</item>
         <item name="buttonBarNegativeButtonStyle">@style/Widget.Vanocka.NegativeButton</item>
+        <item name="buttonBarNeutralButtonStyle">@style/Widget.Vanocka.PositiveButton</item>
         <item name="buttonBarPositiveButtonStyle">@style/Widget.Vanocka.PositiveButton</item>
         <item name="android:colorAccent" tools:targetApi="lollipop">@color/text_primary
         </item>
@@ -38,7 +39,7 @@
     </style>
 
     <style name="Widget.Vanocka.PositiveButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="android:textColor">@color/text_secondary</item>
+        <item name="android:textColor">@color/text_primary</item>
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="strokeWidth">0dp</item>
     </style>

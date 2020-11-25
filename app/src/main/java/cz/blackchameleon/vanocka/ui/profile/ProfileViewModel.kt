@@ -3,11 +3,11 @@ package cz.blackchameleon.vanocka.ui.profile
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import cz.blackchameleon.data.LocalResult
-import cz.blackchameleon.domain.Product
 import cz.blackchameleon.domain.Profile
 import cz.blackchameleon.usecases.profile.DeleteProfile
 import cz.blackchameleon.usecases.profile.GetProfile
 import cz.blackchameleon.usecases.profile.SaveProfile
+import cz.blackchameleon.vanocka.R
 import cz.blackchameleon.vanocka.ui.base.BaseViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -25,8 +25,6 @@ class ProfileViewModel(
     private val _profile: MutableLiveData<Profile> = MutableLiveData()
     val profile: LiveData<Profile> = _profile
 
-    var profileId: Int? = null
-
     init {
         initData()
     }
@@ -34,18 +32,16 @@ class ProfileViewModel(
     override fun initData() {
         startLoading()
         CoroutineScope(Dispatchers.IO).launch {
-            profileId?.let { profileId ->
-                getProfile(profileId).let {
-                    when (it) {
-                        is LocalResult.Success -> {
-                            _profile.postValue(it.data)
-                        }
-                        is LocalResult.Error -> {
-                            _showError.postValue(it.error)
-                        }
+            getProfile(TESTING_PROFILE_ID).let {
+                when (it) {
+                    is LocalResult.Success -> {
+                        _profile.postValue(it.data)
+                    }
+                    is LocalResult.Error -> {
+                        _showError.postValue(R.string.profile_loading_failed)
                     }
                 }
-            } ?: LocalResult.Error<Product>("No product id found")
+            }
         }
         stopLoading()
     }
@@ -55,7 +51,7 @@ class ProfileViewModel(
         CoroutineScope(Dispatchers.IO).launch {
             profile.value?.let {
                 saveProfile(it)
-            } ?: _showError.postValue("Profile not found")
+            } ?: _showError.postValue(R.string.profile_loading_failed)
         }
         stopLoading()
     }
@@ -66,5 +62,9 @@ class ProfileViewModel(
             deleteProfile.invoke()
         }
         stopLoading()
+    }
+
+    private companion object {
+        private const val TESTING_PROFILE_ID = 456
     }
 }

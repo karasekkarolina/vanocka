@@ -7,7 +7,9 @@ import androidx.core.view.isVisible
 import cz.blackchameleon.vanocka.R
 import cz.blackchameleon.vanocka.extensions.setImage
 import cz.blackchameleon.vanocka.ui.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_products.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import kotlinx.android.synthetic.main.fragment_profile.swipe_layout
 import kotlinx.android.synthetic.main.loading_overlay.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -22,8 +24,11 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.profileId = TESTING_PROFILE_ID
+        setupListeners()
+        initObservers()
+    }
 
+    private fun setupListeners() {
         save_profile.setOnClickListener {
             viewModel.saveProfile()
         }
@@ -35,7 +40,7 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
             viewModel.deleteProfile()
         }
 
-        initObservers()
+        swipe_layout.setOnRefreshListener { viewModel.onSwipeReload() }
     }
 
     private fun initObservers() {
@@ -51,7 +56,4 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
         })
     }
 
-    private companion object {
-        private const val TESTING_PROFILE_ID = 456
-    }
 }

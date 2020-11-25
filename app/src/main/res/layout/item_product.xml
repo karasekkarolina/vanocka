@@ -75,8 +75,8 @@
         android:layout_marginStart="@dimen/margin_padding_small"
         android:textColor="@color/text_secondary"
         android:textSize="@dimen/text_size_small"
+        app:layout_constraintBottom_toBottomOf="@id/product_price"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/product_price"
-        app:layout_constraintTop_toTopOf="@id/product_price"
         tools:text="pcs" />
 </androidx.constraintlayout.widget.ConstraintLayout>

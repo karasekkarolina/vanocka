@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import cz.blackchameleon.data.LocalResult
 import cz.blackchameleon.domain.CartItem
 import cz.blackchameleon.usecases.cart.GetCartItems
+import cz.blackchameleon.vanocka.R
 import cz.blackchameleon.vanocka.ui.base.BaseViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -32,7 +33,7 @@ class CartViewModel(
                         _cartItems.postValue(it.data)
                     }
                     is LocalResult.Error -> {
-                        _showError.postValue(it.error)
+                        _showError.postValue(R.string.cart_items_loading_failed)
                     }
                 }
             }
