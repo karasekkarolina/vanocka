@@ -1,7 +1,7 @@
 package cz.blackchameleon.vanocka.di
 
 import cz.blackchameleon.usecases.cart.GetCartItems
-import cz.blackchameleon.usecases.cart.GetProduct
+import cz.blackchameleon.usecases.products.GetProduct
 import cz.blackchameleon.usecases.cart.StoreCartItems
 import org.koin.dsl.module
 

@@ -9,21 +9,14 @@ import kotlinx.android.parcel.Parcelize
  */
 @Parcelize
 class CartItemMo(
-    override val id: String?,
-    override val name: String?,
-    override val title: String?,
-    override val image: String?,
+    val id: String?,
+    val name: String?,
+    val title: String?,
+    val image: String?,
     val amount: Int?,
-    override val price: Float?,
-    override val unit: String?
-) : Parcelable, ProductMo(
-    id = id,
-    name = name,
-    title = title,
-    image = image,
-    price = price,
-    unit = unit
-) {
+    val price: Float?,
+    val unit: String?
+) : Parcelable {
     fun toCartItem() = CartItem(
         id ?: "",
         name ?: "",

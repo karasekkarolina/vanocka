@@ -19,4 +19,3 @@ class RemoteCartSourceImpl(private val cartApi: CartApi) : RemoteCartSource {
             }
             .subscribeOn(Schedulers.io())
 }
-

@@ -1,9 +1,5 @@
 package cz.blackchameleon.vanocka.di
 
-import android.widget.ArrayAdapter
-import com.google.gson.internal.bind.ArrayTypeAdapter
-import com.google.gson.internal.bind.ArrayTypeAdapter.FACTORY
-import com.squareup.moshi.Moshi
 import cz.blackchameleon.vanocka.UrlConst.BASE_URL
 import cz.blackchameleon.vanocka.framework.CartApi
 import cz.blackchameleon.vanocka.framework.ProductApi
@@ -40,7 +36,7 @@ private fun provideRetrofit(client: OkHttpClient): Retrofit = Retrofit.Builder()
     .baseUrl(BASE_URL)
     .client(client)
     .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-    .addConverterFactory(MoshiConverterFactory.create(x()))
+    .addConverterFactory(MoshiConverterFactory.create())
     .build()
 
 // Extension function for creating retrofit service
@@ -50,8 +46,3 @@ private inline fun <reified T> provideRetrofitService(retrofit: Retrofit): T =
 private fun provideLoggingInterceptor() = HttpLoggingInterceptor().apply {
     level = HttpLoggingInterceptor.Level.BODY
 }
-
-private fun x() =
-    Moshi.Builder()
-        .add(ArrayTypeAdapter.FACTORY)
-        .build()
