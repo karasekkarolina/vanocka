@@ -10,11 +10,13 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class ProfileMo(
     val id: Int?,
+    val photo: String?,
     val name: String?,
     val credits: Int?
 ) : Parcelable {
     fun toProfile() = Profile(
         id ?: 0,
+        photo ?: "",
         name ?: "",
         credits ?: 0
     )

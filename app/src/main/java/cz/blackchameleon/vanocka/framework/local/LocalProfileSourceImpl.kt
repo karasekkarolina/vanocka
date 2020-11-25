@@ -28,7 +28,7 @@ class LocalProfileSourceImpl(
         profile.run {
             profileDao?.insert(
                 ProfileDb(
-                    id, name, credits
+                    id, photo, name, credits
                 )
             )
         }

@@ -4,10 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    android:padding="@dimen/margin_padding_small">
+    android:padding="@dimen/margin_padding_normal">
 
     <com.makeramen.roundedimageview.RoundedImageView
         android:id="@+id/product_image"
@@ -18,6 +17,7 @@
         android:src="@color/background_placeholder"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:riv_border_color="@color/background_placeholder"
         app:riv_corner_radius="10dp" />
 
     <TextView
@@ -28,6 +28,7 @@
         android:layout_marginEnd="@dimen/margin_padding_small"
         android:ellipsize="end"
         android:maxLines="1"
+        android:textColor="@color/text_primary"
         android:textSize="@dimen/text_size_large"
         app:layout_constraintEnd_toStartOf="@id/amount_arrow_up"
         app:layout_constraintHorizontal_bias="0"
@@ -43,6 +44,7 @@
         android:layout_marginEnd="@dimen/margin_padding_small"
         android:ellipsize="end"
         android:maxLines="3"
+        android:textColor="@color/text_secondary"
         app:layout_constraintEnd_toStartOf="@id/amount_arrow_up"
         app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="@id/product_name"
@@ -56,6 +58,7 @@
         android:layout_marginStart="@dimen/margin_padding_normal"
         android:layout_marginTop="@dimen/margin_padding_small"
         android:textAlignment="viewEnd"
+        android:textColor="@color/text_primary"
         android:textSize="@dimen/text_size_large"
         app:layout_constraintEnd_toStartOf="@id/product_unit"
         app:layout_constraintHorizontal_bias="0"
@@ -70,9 +73,10 @@
         android:layout_marginStart="@dimen/margin_padding_small"
         android:layout_marginEnd="@dimen/margin_padding_small"
         android:text="@string/product_unit"
+        android:textColor="@color/text_secondary"
         android:textSize="@dimen/text_size_large"
         app:layout_constraintBottom_toBottomOf="@id/product_price"
-        app:layout_constraintEnd_toStartOf="@id/amount_arrow_up"
+        app:layout_constraintEnd_toStartOf="@id/amount_arrow_down"
         app:layout_constraintStart_toEndOf="@id/product_price" />
 
     <ImageButton
@@ -81,22 +85,20 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_up"
         app:layout_constraintBottom_toTopOf="@id/product_amount"
-        app:layout_constraintEnd_toEndOf="@id/product_amount"
-        app:layout_constraintStart_toStartOf="@id/product_amount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/product_name"
         app:layout_constraintTop_toTopOf="@id/product_image" />
 
     <TextView
         android:id="@+id/product_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_padding_small"
-        android:layout_marginEnd="@dimen/margin_padding_small"
         android:padding="@dimen/margin_padding_small"
+        android:textColor="@color/text_primary"
         android:textSize="@dimen/text_size_large"
         app:layout_constraintBottom_toTopOf="@id/amount_arrow_down"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintStart_toEndOf="@id/product_unit"
+        app:layout_constraintEnd_toEndOf="@id/amount_arrow_up"
+        app:layout_constraintStart_toStartOf="@id/amount_arrow_up"
         app:layout_constraintTop_toBottomOf="@id/amount_arrow_up"
         tools:text="2" />
 
@@ -105,8 +107,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/ic_arrow_down"
+        android:textColor="@color/text_secondary"
         app:layout_constraintBottom_toBottomOf="@id/product_image"
-        app:layout_constraintEnd_toEndOf="@id/product_amount"
-        app:layout_constraintStart_toStartOf="@id/product_amount"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/product_unit"
         app:layout_constraintTop_toBottomOf="@id/product_amount" />
 </androidx.constraintlayout.widget.ConstraintLayout>

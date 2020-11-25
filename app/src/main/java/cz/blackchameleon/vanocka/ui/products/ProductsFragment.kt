@@ -28,7 +28,7 @@ class ProductsFragment : BaseFragment(R.layout.fragment_products) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL)
+        val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         product_list.adapter = productAdapter
         product_list.layoutManager = LinearLayoutManager(activity)
         product_list.addItemDecoration(itemDecoration)
@@ -44,10 +44,7 @@ class ProductsFragment : BaseFragment(R.layout.fragment_products) {
 
         viewModel.loading.observe(viewLifecycleOwner, { visible ->
             loading_overlay.isVisible = visible
-        })
-
-        viewModel.showError.observe(viewLifecycleOwner, {
-            // TODO show error state
+            swipe_layout.isRefreshing = visible
         })
     }
 }

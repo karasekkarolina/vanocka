@@ -38,7 +38,7 @@ class ProductsViewModel(
                     }
                 }
             }
-            stopLoading()
         }
+        stopLoading()
     }
 }

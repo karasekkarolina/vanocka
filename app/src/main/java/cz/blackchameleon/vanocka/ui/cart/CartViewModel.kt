@@ -35,8 +35,32 @@ class CartViewModel(
                         _showError.postValue(it.error)
                     }
                 }
-                stopLoading()
             }
         }
+        stopLoading()
+    }
+
+    fun onMinusClicked(cartItem: CartItem) {
+        if (cartItem.amount > 0) {
+            val updatedList = cartItems.value?.let {
+                val x = it.toMutableList()
+                x[it.indexOfFirst { it.id == cartItem.id }] = CartItem(
+                    id = cartItem.id,
+                    name = cartItem.name,
+                    title = cartItem.title,
+                    image = cartItem.image,
+                    amount = cartItem.amount.dec(),
+                    price = cartItem.price,
+                    unit = cartItem.unit
+                )
+                x
+            } ?: emptyList()
+            _cartItems.postValue(updatedList)
+        }
+    }
+
+    fun onPlusClicked(cartItem: CartItem) {
+        cartItem.amount.inc()
+        _cartItems.value = cartItems.value
     }
 }

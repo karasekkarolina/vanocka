@@ -14,8 +14,10 @@ import kotlinx.android.synthetic.main.item_cart.view.*
 /**
  * @author Karolina Klepackova on 22.11.2020.
  */
-
-class CartAdapter : ListAdapter<CartItem, CartAdapter.ViewHolder>(
+class CartAdapter(
+    private val onMinusClicked: (CartItem) -> Unit,
+    private val onPlusClicked: (CartItem) -> Unit
+) : ListAdapter<CartItem, CartAdapter.ViewHolder>(
     object : DiffUtil.ItemCallback<CartItem>() {
         override fun areItemsTheSame(oldItem: CartItem, newItem: CartItem) = oldItem == newItem
 
@@ -50,18 +52,11 @@ class CartAdapter : ListAdapter<CartItem, CartAdapter.ViewHolder>(
                 product_amount.text = "${item.amount}"
                 product_price.text = "${item.price} CZK"
                 product_unit.text = resources.getString(R.string.product_unit, item.unit)
-                amount_arrow_up.setOnClickListener {
-                    product_amount.text = "${item.amount + 1}"
-                    item.amount.inc()
-                }
                 amount_arrow_down.setOnClickListener {
-                    if ((item.amount - 1) <= 0) {
-                        product_amount.text = "0"
-                        item.amount = 0f
-                    } else {
-                        product_amount.text = "${item.amount - 1}"
-                        item.amount.dec()
-                    }
+                    onMinusClicked(item)
+                }
+                amount_arrow_up.setOnClickListener {
+                    onPlusClicked(item)
                 }
             }
         }

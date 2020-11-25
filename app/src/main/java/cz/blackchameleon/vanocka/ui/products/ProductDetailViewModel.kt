@@ -41,7 +41,7 @@ class ProductDetailViewModel(
                     }
                 }
             } ?: LocalResult.Error<Product>("No product id found")
-            stopLoading()
         }
+        stopLoading()
     }
 }

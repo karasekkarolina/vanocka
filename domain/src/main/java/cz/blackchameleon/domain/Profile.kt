@@ -6,6 +6,7 @@ package cz.blackchameleon.domain
 
 data class Profile(
     val id: Int,
+    val photo: String,
     val name: String,
     val credits: Int
 )

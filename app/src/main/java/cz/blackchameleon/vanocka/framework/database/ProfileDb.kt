@@ -12,6 +12,8 @@ import cz.blackchameleon.domain.Profile
 open class ProfileDb(
     @PrimaryKey
     open var id: Int,
+    @ColumnInfo(name = "photo")
+    val photo: String,
     @ColumnInfo(name = "name")
     var name: String,
     @ColumnInfo(name = "credits")
@@ -19,6 +21,7 @@ open class ProfileDb(
 ) {
     fun toProfile(): Profile = Profile(
         id = this.id,
+        photo = this.photo,
         name = this.name,
         credits = this.credits
     )

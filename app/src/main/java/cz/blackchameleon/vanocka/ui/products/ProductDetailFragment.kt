@@ -2,11 +2,11 @@ package cz.blackchameleon.vanocka.ui.products
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
 import androidx.navigation.fragment.navArgs
 import cz.blackchameleon.vanocka.R
+import cz.blackchameleon.vanocka.extensions.setImage
 import cz.blackchameleon.vanocka.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.loading_overlay.*
+import kotlinx.android.synthetic.main.fragment_product_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -26,16 +26,12 @@ class ProductDetailFragment : BaseFragment(R.layout.fragment_product_detail) {
     }
 
     private fun initObservers() {
-        viewModel.product.observe(viewLifecycleOwner, {
-
-        })
-
-        viewModel.loading.observe(viewLifecycleOwner, { visible ->
-            loading_overlay.isVisible = visible
-        })
-
-        viewModel.showError.observe(viewLifecycleOwner, {
-            // TODO show error state
+        viewModel.product.observe(viewLifecycleOwner, { product ->
+            product_image.setImage(product.image)
+            product_name.text = product.name
+            product_title.text = product.title
+            product_price.text = "${product.price} CZK"
+            product_unit.text = resources.getString(R.string.product_unit, product.unit)
         })
     }
 }

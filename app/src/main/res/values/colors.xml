@@ -4,12 +4,13 @@
     <color name="color_primary_dark">#915E6F</color>
     <color name="color_accent">#A4508B</color>
 
-    <color name="text_primary">#2F3942</color>
-    <color name="text_secondary">#596168</color>
-    <color name="text_tertiary">#999FA5</color>
+    <color name="text_primary">#21282E</color>
+    <color name="text_secondary">#6A6E71</color>
+    <color name="text_tertiary">#A7ADB3</color>
 
     <color name="background_primary">#FFF</color>
     <color name="background_placeholder">#999FA5</color>
+    <color name="placeholder_stroke">#2D3032</color>
     <color name="overlay">#C9CBDD</color>
 
 </resources>

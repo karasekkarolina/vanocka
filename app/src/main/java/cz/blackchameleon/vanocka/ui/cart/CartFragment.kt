@@ -18,12 +18,14 @@ class CartFragment : BaseFragment(R.layout.fragment_cart) {
 
     override val viewModel: CartViewModel by viewModel()
 
-    private val cartAdapter: CartAdapter by lazy { CartAdapter() }
+    private val cartAdapter: CartAdapter by lazy {
+        CartAdapter(viewModel::onMinusClicked, viewModel::onPlusClicked)
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL)
+        val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         cart_list.adapter = cartAdapter
         cart_list.layoutManager = LinearLayoutManager(activity)
         cart_list.addItemDecoration(itemDecoration)
@@ -39,10 +41,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart) {
 
         viewModel.loading.observe(viewLifecycleOwner, { visible ->
             loading_overlay.isVisible = visible
-        })
-
-        viewModel.showError.observe(viewLifecycleOwner, {
-            // TODO show error state
+            swipe_layout.isRefreshing = visible
         })
     }
 }

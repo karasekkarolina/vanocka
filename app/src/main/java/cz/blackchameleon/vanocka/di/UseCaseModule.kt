@@ -4,7 +4,9 @@ import cz.blackchameleon.usecases.cart.GetCartItems
 import cz.blackchameleon.usecases.products.GetProduct
 import cz.blackchameleon.usecases.cart.StoreCartItems
 import cz.blackchameleon.usecases.products.GetProducts
+import cz.blackchameleon.usecases.profile.DeleteProfile
 import cz.blackchameleon.usecases.profile.GetProfile
+import cz.blackchameleon.usecases.profile.SaveProfile
 import org.koin.dsl.module
 
 /**
@@ -16,4 +18,6 @@ val useCaseModule = module {
     single { GetProduct(get()) }
     single { GetProducts(get()) }
     single { GetProfile(get()) }
+    single { SaveProfile(get()) }
+    single { DeleteProfile(get()) }
 }

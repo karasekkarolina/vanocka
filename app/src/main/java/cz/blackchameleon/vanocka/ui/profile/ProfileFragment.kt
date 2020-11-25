@@ -2,16 +2,18 @@ package cz.blackchameleon.vanocka.ui.profile
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isVisible
 import cz.blackchameleon.vanocka.R
+import cz.blackchameleon.vanocka.extensions.setImage
 import cz.blackchameleon.vanocka.ui.base.BaseFragment
+import kotlinx.android.synthetic.main.fragment_profile.*
 import kotlinx.android.synthetic.main.loading_overlay.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * @author Karolina Klepackova on 21.11.2020.
  */
-
 class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
 
     override val viewModel: ProfileViewModel by viewModel()
@@ -21,20 +23,31 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.profileId = TESTING_PROFILE_ID
+
+        save_profile.setOnClickListener {
+            viewModel.saveProfile()
+        }
+        edit_profile.setOnClickListener {
+            Toast.makeText(context, resources.getString(R.string.does_nothing), Toast.LENGTH_LONG)
+                .show()
+        }
+        delete_profile.setOnClickListener {
+            viewModel.deleteProfile()
+        }
+
         initObservers()
     }
 
     private fun initObservers() {
-        viewModel.profile.observe(viewLifecycleOwner, {
-            // Todo update data
+        viewModel.profile.observe(viewLifecycleOwner, { profile ->
+            profile_name.text = profile.name
+            profile_credits.text = resources.getString(R.string.credits, profile.credits)
+            profile_photo.setImage(profile.photo)
         })
 
         viewModel.loading.observe(viewLifecycleOwner, { visible ->
             loading_overlay.isVisible = visible
-        })
-
-        viewModel.showError.observe(viewLifecycleOwner, {
-            // TODO show error state
+            swipe_layout.isRefreshing = visible
         })
     }
 

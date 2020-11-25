@@ -27,7 +27,7 @@
         android:id="@+id/action_product_detail_fragment"
         app:destination="@+id/navigation_product_detail_fragment" />
 
-    <dialog
+    <fragment
         android:id="@+id/navigation_product_detail_fragment"
         android:name="cz.blackchameleon.vanocka.ui.products.ProductDetailFragment"
         android:label="@string/title_product_detail"
@@ -35,5 +35,5 @@
         <argument
             android:name="id"
             app:argType="string" />
-    </dialog>
+    </fragment>
 </navigation>
