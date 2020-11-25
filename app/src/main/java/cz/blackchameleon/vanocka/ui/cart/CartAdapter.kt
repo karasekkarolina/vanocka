@@ -49,7 +49,7 @@ class CartAdapter(
                     }
                     removeOnGlobalLayoutListener {}
                 }
-                product_amount.text = "${item.amount}"
+                product_amount.text = String.format("%.2f", item.amount)
                 product_price.text = "${item.price} CZK"
                 product_unit.text = resources.getString(R.string.product_unit, item.unit)
                 amount_arrow_down.setOnClickListener {

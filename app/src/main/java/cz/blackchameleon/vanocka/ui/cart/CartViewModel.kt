@@ -48,7 +48,7 @@ class CartViewModel(
                     name = cartItem.name,
                     title = cartItem.title,
                     image = cartItem.image,
-                    amount = cartItem.amount.dec(),
+                    amount = if (cartItem.amount.dec() < 0) 0f else cartItem.amount.dec(),
                     price = cartItem.price,
                     unit = cartItem.unit
                 )
@@ -59,7 +59,20 @@ class CartViewModel(
     }
 
     fun onPlusClicked(cartItem: CartItem) {
-        cartItem.amount.inc()
+        val updatedList = cartItems.value?.let {
+            val x = it.toMutableList()
+            x[it.indexOfFirst { it.id == cartItem.id }] = CartItem(
+                id = cartItem.id,
+                name = cartItem.name,
+                title = cartItem.title,
+                image = cartItem.image,
+                amount = cartItem.amount.inc(),
+                price = cartItem.price,
+                unit = cartItem.unit
+            )
+            x
+        } ?: emptyList()
+        _cartItems.postValue(updatedList)
         _cartItems.value = cartItems.value
     }
 }
