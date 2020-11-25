@@ -28,7 +28,6 @@ class ProductDetailViewModel(
     }
 
     override fun initData() {
-        startLoading()
         CoroutineScope(Dispatchers.IO).launch {
             productId?.let { productId ->
                 getProduct(productId).let {
@@ -43,6 +42,5 @@ class ProductDetailViewModel(
                 }
             } ?: _showError.postValue(R.string.product_loading_failed)
         }
-        stopLoading()
     }
 }

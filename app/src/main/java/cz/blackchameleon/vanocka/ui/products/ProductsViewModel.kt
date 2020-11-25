@@ -27,7 +27,6 @@ class ProductsViewModel(
     }
 
     override fun initData() {
-        startLoading()
         CoroutineScope(Dispatchers.IO).launch {
             getProducts().let {
                 when (it) {
@@ -40,6 +39,5 @@ class ProductsViewModel(
                 }
             }
         }
-        stopLoading()
     }
 }

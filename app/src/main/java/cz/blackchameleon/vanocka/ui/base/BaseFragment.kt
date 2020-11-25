@@ -22,7 +22,9 @@ abstract class BaseFragment(layout: Int) : Fragment(layout) {
                 AlertDialog.Builder(context, R.style.Widget_Vanocka_AlertDialog)
                     .setTitle(R.string.error_occurred)
                     .setMessage(error)
-                    .setPositiveButton(android.R.string.ok, null)
+                    .setPositiveButton(android.R.string.ok) { _, _ ->
+                        viewModel.showEmptyState()
+                    }
                     .show()
             }
         })

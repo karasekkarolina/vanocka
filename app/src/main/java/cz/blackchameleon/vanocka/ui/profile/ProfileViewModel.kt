@@ -30,7 +30,6 @@ class ProfileViewModel(
     }
 
     override fun initData() {
-        startLoading()
         CoroutineScope(Dispatchers.IO).launch {
             getProfile(TESTING_PROFILE_ID).let {
                 when (it) {
@@ -43,25 +42,20 @@ class ProfileViewModel(
                 }
             }
         }
-        stopLoading()
     }
 
     fun saveProfile() {
-        startLoading()
         CoroutineScope(Dispatchers.IO).launch {
             profile.value?.let {
                 saveProfile(it)
             } ?: _showError.postValue(R.string.profile_loading_failed)
         }
-        stopLoading()
     }
 
     fun deleteProfile() {
-        startLoading()
         CoroutineScope(Dispatchers.IO).launch {
             deleteProfile.invoke()
         }
-        stopLoading()
     }
 
     private companion object {

@@ -25,7 +25,6 @@ class CartViewModel(
     }
 
     override fun initData() {
-        startLoading()
         CoroutineScope(Dispatchers.IO).launch {
             getCartItems().let {
                 when (it) {
@@ -38,7 +37,6 @@ class CartViewModel(
                 }
             }
         }
-        stopLoading()
     }
 
     fun onMinusClicked(cartItem: CartItem) {

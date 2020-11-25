@@ -7,10 +7,7 @@ import androidx.core.view.isVisible
 import cz.blackchameleon.vanocka.R
 import cz.blackchameleon.vanocka.extensions.setImage
 import cz.blackchameleon.vanocka.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_products.*
 import kotlinx.android.synthetic.main.fragment_profile.*
-import kotlinx.android.synthetic.main.fragment_profile.swipe_layout
-import kotlinx.android.synthetic.main.loading_overlay.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -20,9 +17,10 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
 
     override val viewModel: ProfileViewModel by viewModel()
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        overlay.isVisible = true
 
         setupListeners()
         initObservers()
@@ -48,12 +46,13 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
             profile_name.text = profile.name
             profile_credits.text = resources.getString(R.string.credits, profile.credits)
             profile_photo.setImage(profile.photo)
+            overlay.isVisible = false
         })
 
-        viewModel.loading.observe(viewLifecycleOwner, { visible ->
-            loading_overlay.isVisible = visible
-            swipe_layout.isRefreshing = visible
+        viewModel.showEmptyState.observe(viewLifecycleOwner, {
+            no_data_text.isVisible = true
+            swipe_layout.isVisible = false
+            overlay.isVisible = false
         })
     }
-
 }

@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cz.blackchameleon.vanocka.R
 import cz.blackchameleon.vanocka.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_cart.*
-import kotlinx.android.synthetic.main.loading_overlay.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -25,6 +24,8 @@ class CartFragment : BaseFragment(R.layout.fragment_cart) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        overlay.isVisible = true
+
         val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         cart_list.adapter = cartAdapter
         cart_list.layoutManager = LinearLayoutManager(activity)
@@ -37,11 +38,12 @@ class CartFragment : BaseFragment(R.layout.fragment_cart) {
     private fun initObservers() {
         viewModel.cartItems.observe(viewLifecycleOwner, {
             cartAdapter.submitList(it)
+            overlay.isVisible = false
         })
-
-        viewModel.loading.observe(viewLifecycleOwner, { visible ->
-            loading_overlay.isVisible = visible
-            swipe_layout.isRefreshing = visible
+        viewModel.showEmptyState.observe(viewLifecycleOwner, {
+            no_data_text.isVisible = true
+            swipe_layout.isVisible = false
+            overlay.isVisible = false
         })
     }
 }

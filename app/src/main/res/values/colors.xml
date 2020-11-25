@@ -11,6 +11,6 @@
     <color name="background_primary">#FFF</color>
     <color name="background_placeholder">#999FA5</color>
     <color name="placeholder_stroke">#2D3032</color>
-    <color name="overlay">#C9CBDD</color>
+    <color name="overlay">#F8ECEC</color>
 
 </resources>

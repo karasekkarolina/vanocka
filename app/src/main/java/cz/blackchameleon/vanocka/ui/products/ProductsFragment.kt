@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import cz.blackchameleon.vanocka.R
 import cz.blackchameleon.vanocka.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_products.*
-import kotlinx.android.synthetic.main.loading_overlay.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -28,23 +27,28 @@ class ProductsFragment : BaseFragment(R.layout.fragment_products) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        overlay.isVisible = true
+
+        initObservers()
+
         val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
         product_list.adapter = productAdapter
         product_list.layoutManager = LinearLayoutManager(activity)
         product_list.addItemDecoration(itemDecoration)
 
         swipe_layout.setOnRefreshListener { viewModel.onSwipeReload() }
-        initObservers()
     }
 
     private fun initObservers() {
         viewModel.products.observe(viewLifecycleOwner, {
             productAdapter.submitList(it)
+            overlay.isVisible = false
         })
 
-        viewModel.loading.observe(viewLifecycleOwner, { visible ->
-            loading_overlay.isVisible = visible
-            swipe_layout.isRefreshing = visible
+        viewModel.showEmptyState.observe(viewLifecycleOwner, {
+            no_data_text.isVisible = true
+            swipe_layout.isVisible = false
+            overlay.isVisible = false
         })
     }
 }

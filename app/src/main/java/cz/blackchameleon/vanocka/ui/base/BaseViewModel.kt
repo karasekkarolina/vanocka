@@ -12,8 +12,8 @@ abstract class BaseViewModel : ViewModel() {
     protected val _showError: MutableLiveData<Int> = MutableLiveData()
     val showError: LiveData<Int> = _showError
 
-    private val _loading: MutableLiveData<Boolean> = MutableLiveData()
-    val loading: LiveData<Boolean> = _loading
+    private val _showEmptyState: MutableLiveData<Unit> = MutableLiveData()
+    val showEmptyState: LiveData<Unit> = _showEmptyState
 
     abstract fun initData()
 
@@ -21,11 +21,7 @@ abstract class BaseViewModel : ViewModel() {
         initData()
     }
 
-    protected fun startLoading() {
-        _loading.value = true
-    }
-
-    protected fun stopLoading() {
-        _loading.value = false
+    fun showEmptyState() {
+        _showEmptyState.postValue(Unit)
     }
 }
