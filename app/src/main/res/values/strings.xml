@@ -15,5 +15,7 @@
     <string name="title_profile">Profile</string>
     <string name="profile_photo">Profile photo</string>
     <string name="title_product_detail">Detail product</string>
+    <string name="credits">Credits: %s</string>
+    <string name="profile_edit">Edit profile</string>
 
 </resources>

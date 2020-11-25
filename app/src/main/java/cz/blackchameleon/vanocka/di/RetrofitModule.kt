@@ -3,6 +3,7 @@ package cz.blackchameleon.vanocka.di
 import cz.blackchameleon.vanocka.UrlConst.BASE_URL
 import cz.blackchameleon.vanocka.framework.CartApi
 import cz.blackchameleon.vanocka.framework.ProductApi
+import cz.blackchameleon.vanocka.framework.ProfileApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module
@@ -20,6 +21,7 @@ val retrofitModule = module {
 
     single { provideRetrofitService<ProductApi>(get()) }
     single { provideRetrofitService<CartApi>(get()) }
+    single { provideRetrofitService<ProfileApi>(get()) }
 }
 
 // Creates new Okhttp client for API calls

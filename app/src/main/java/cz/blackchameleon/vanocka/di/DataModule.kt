@@ -2,6 +2,7 @@ package cz.blackchameleon.vanocka.di
 
 import cz.blackchameleon.data.repository.CartRepository
 import cz.blackchameleon.data.repository.ProductRepository
+import cz.blackchameleon.data.repository.ProfileRepository
 import org.koin.dsl.module
 
 /**
@@ -11,4 +12,5 @@ import org.koin.dsl.module
 val dataModule = module {
     single { CartRepository(get(), get()) }
     single { ProductRepository(get(), get()) }
+    single { ProfileRepository(get(), get()) }
 }

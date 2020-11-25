@@ -9,7 +9,7 @@ class CartItem(
     name: String,
     title: String,
     image: String,
-    val amount: Float,
+    var amount: Float,
     price: Float,
     unit: String
 ) : Product(

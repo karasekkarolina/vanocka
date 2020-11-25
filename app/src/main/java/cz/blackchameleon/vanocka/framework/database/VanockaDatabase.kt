@@ -11,14 +11,17 @@ import androidx.room.RoomDatabase
 @Database(
     entities = [
         CartItemDb::class,
-        ProductDb::class
-    ], exportSchema = false, version = 2
+        ProductDb::class,
+        ProfileDb::class
+    ], exportSchema = false, version = 3
 )
 abstract class VanockaDatabase : RoomDatabase() {
 
     abstract fun cartItemDao(): CartItemDao
 
     abstract fun productDao(): ProductDao
+
+    abstract fun profileDao(): ProfileDao
 
     companion object {
         private const val DB_NAME = "vanockaDb"

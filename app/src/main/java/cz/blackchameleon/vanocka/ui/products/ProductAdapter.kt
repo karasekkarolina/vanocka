@@ -8,11 +8,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cz.blackchameleon.domain.Product
 import cz.blackchameleon.vanocka.R
+import cz.blackchameleon.vanocka.extensions.setImage
+import kotlinx.android.synthetic.main.item_product.view.*
 
 /**
  * @author Karolina Klepackova on 22.11.2020.
  */
-
 class ProductAdapter(
     private val clickListener: (Product) -> Unit
 ) : ListAdapter<Product, ProductAdapter.ViewHolder>(
@@ -35,7 +36,25 @@ class ProductAdapter(
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(item: Product) {
+            itemView.apply {
+                product_image.setImage(item.image)
+                product_name.text = item.name
+                product_title.text = item.title
+                product_title.viewTreeObserver.apply {
+                    addOnGlobalLayoutListener {
+                        itemView.product_title?.let {
+                            it.maxLines = it.height / it.lineHeight
+                        }
+                    }
+                    removeOnGlobalLayoutListener {}
+                }
+                product_price.text = "${item.price} CZK"
+                product_unit.text = resources.getString(R.string.product_unit, item.unit)
 
+                main_content.setOnClickListener {
+                    clickListener(item)
+                }
+            }
         }
     }
 }

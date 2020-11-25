@@ -1,13 +1,10 @@
 package cz.blackchameleon.data.repository
 
 import cz.blackchameleon.data.LocalResult
-import cz.blackchameleon.data.RemoteResult
 import cz.blackchameleon.data.local.LocalProductSource
 import cz.blackchameleon.data.remote.RemoteProductSource
 import cz.blackchameleon.domain.Product
-import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.withContext
-import java.lang.Error
 import kotlin.coroutines.coroutineContext
 
 /**
@@ -35,7 +32,9 @@ class ProductRepository(
     suspend fun getAllProducts(): LocalResult<List<Product>> =
         withContext(coroutineContext) {
             localProductSource.getAllProducts()?.let {
-                return@withContext LocalResult.Success(it)
+                if (it.isNotEmpty()) {
+                    return@withContext LocalResult.Success(it)
+                }
             }
 
             try {

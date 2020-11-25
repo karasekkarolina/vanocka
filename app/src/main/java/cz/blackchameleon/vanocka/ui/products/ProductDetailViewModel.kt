@@ -26,8 +26,8 @@ class ProductDetailViewModel(
         initData()
     }
 
-
-    private fun initData() {
+    override fun initData() {
+        startLoading()
         CoroutineScope(Dispatchers.IO).launch {
             productId?.let { productId ->
                 getProduct(productId).let {
@@ -41,6 +41,7 @@ class ProductDetailViewModel(
                     }
                 }
             } ?: LocalResult.Error<Product>("No product id found")
+            stopLoading()
         }
     }
 }

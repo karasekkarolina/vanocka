@@ -2,11 +2,14 @@ package cz.blackchameleon.vanocka.ui.products
 
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import cz.blackchameleon.vanocka.R
 import cz.blackchameleon.vanocka.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_products.*
+import kotlinx.android.synthetic.main.loading_overlay.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
@@ -25,13 +28,25 @@ class ProductsFragment : BaseFragment(R.layout.fragment_products) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val itemDecoration = DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL)
         product_list.adapter = productAdapter
+        product_list.layoutManager = LinearLayoutManager(activity)
+        product_list.addItemDecoration(itemDecoration)
 
+        swipe_layout.setOnRefreshListener { viewModel.onSwipeReload() }
         initObservers()
     }
 
     private fun initObservers() {
-        viewModel.showError.observe(viewLifecycleOwner, Observer {
+        viewModel.products.observe(viewLifecycleOwner, {
+            productAdapter.submitList(it)
+        })
+
+        viewModel.loading.observe(viewLifecycleOwner, { visible ->
+            loading_overlay.isVisible = visible
+        })
+
+        viewModel.showError.observe(viewLifecycleOwner, {
             // TODO show error state
         })
     }
