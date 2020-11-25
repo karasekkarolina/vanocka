@@ -13,7 +13,7 @@ class CartItemMo(
     val name: String?,
     val title: String?,
     val image: String?,
-    val amount: Int?,
+    val amount: Float?,
     val price: Float?,
     val unit: String?
 ) : Parcelable {
@@ -22,7 +22,7 @@ class CartItemMo(
         name ?: "",
         title ?: "",
         image ?: "",
-        amount ?: 0,
+        amount ?: 0f,
         price ?: 0f,
         unit ?: ""
     )

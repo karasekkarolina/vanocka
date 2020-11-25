@@ -13,16 +13,16 @@ class CartItemDb(
     id: String,
     name: String,
     title: String,
-    thumbnail_image: String,
+    image: String,
     @ColumnInfo(name = "amount")
-    val amount: Int,
+    val amount: Float,
     price: Float,
     unit: String
 ) : ProductDb(
     id = id,
     name = name,
     title = title,
-    thumbnail_image = thumbnail_image,
+    image = image,
     price = price,
     unit = unit
 ) {
@@ -30,7 +30,7 @@ class CartItemDb(
         id = this.id,
         name = this.name,
         title = this.title,
-        thumbnail_image = this.thumbnail_image,
+        image = this.image,
         amount = this.amount,
         price = this.price,
         unit = this.unit

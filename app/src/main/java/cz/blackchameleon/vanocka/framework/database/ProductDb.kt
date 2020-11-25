@@ -16,8 +16,8 @@ open class ProductDb(
     var name: String,
     @ColumnInfo(name = "title")
     var title: String,
-    @ColumnInfo(name = "thumbnail_image")
-    var thumbnail_image: String,
+    @ColumnInfo(name = "image")
+    var image: String,
     @ColumnInfo(name = "price")
     var price: Float,
     @ColumnInfo(name = "unit")
@@ -27,7 +27,7 @@ open class ProductDb(
         id = this.id,
         name = this.name,
         title = this.title,
-        image = this.thumbnail_image,
+        image = this.image,
         price = this.price,
         unit = this.unit
     )

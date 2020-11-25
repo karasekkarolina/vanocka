@@ -8,15 +8,15 @@ class CartItem(
     id: String,
     name: String,
     title: String,
-    thumbnail_image: String,
-    val amount: Int,
+    image: String,
+    val amount: Float,
     price: Float,
     unit: String
 ) : Product(
     id = id,
     name = name,
     title = title,
-    image = thumbnail_image,
+    image = image,
     price = price,
     unit = unit
 ) {
