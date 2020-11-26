@@ -46,9 +46,9 @@ class CartViewModel(
 
     fun onMinusClicked(cartItem: CartItem) {
         if (cartItem.amount > 0) {
-            _cartItems.postValue(cartItems.value?.let {
-                val updatedList = it.toMutableList()
-                updatedList[it.indexOfFirst { it.id == cartItem.id }] = CartItem(
+            _cartItems.postValue(cartItems.value?.let { list ->
+                val updatedList = list.toMutableList()
+                updatedList[list.indexOfFirst { it.id == cartItem.id }] = CartItem(
                     id = cartItem.id,
                     name = cartItem.name,
                     title = cartItem.title,
@@ -63,9 +63,9 @@ class CartViewModel(
     }
 
     fun onPlusClicked(cartItem: CartItem) {
-        _cartItems.postValue(cartItems.value?.let {
-            val updatedList = it.toMutableList()
-            updatedList[it.indexOfFirst { it.id == cartItem.id }] = CartItem(
+        _cartItems.postValue(cartItems.value?.let { list ->
+            val updatedList = list.toMutableList()
+            updatedList[list.indexOfFirst { it.id == cartItem.id }] = CartItem(
                 id = cartItem.id,
                 name = cartItem.name,
                 title = cartItem.title,
