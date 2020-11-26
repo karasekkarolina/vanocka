@@ -32,13 +32,13 @@ App is developed as a single activity with multiple fragments and is written in 
 
 It uses Android [Navigation Component](https://developer.android.com/guide/navigation) for navigating between screens.
 
+UI states are held in View Models and propagated via Live data values.
+
+Unit tests are based on Mockito and JUnit.
+
 ### Async work:
 API calls are handled by Retrofit via RxKotlin.
 DB calls are handled by Room database via RxKotlin.
 Other async tasks are done via Kotlin coroutines.
 
 Both technologies are used just for demonstration.
-
-UI states are held in View Models and propagated via Live data values.
-
-Unit tests are based on Mockito and JUnit.
