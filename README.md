@@ -32,7 +32,7 @@ App is developed as a single activity with multiple fragments and is written in 
 
 It uses Android [Navigation Component](https://developer.android.com/guide/navigation) for navigating between screens.
 
-# Async work:
+### Async work:
 API calls are handled by Retrofit via RxKotlin.
 DB calls are handled by Room database via RxKotlin.
 Other async tasks are done via Kotlin coroutines.
