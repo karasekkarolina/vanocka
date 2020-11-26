@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import cz.blackchameleon.data.LocalResult
 import cz.blackchameleon.domain.CartItem
 import cz.blackchameleon.usecases.cart.GetCartItems
-import cz.blackchameleon.usecases.cart.StoreCartItems
 import cz.blackchameleon.vanocka.R
 import cz.blackchameleon.vanocka.ui.base.BaseViewModel
 import kotlinx.coroutines.CoroutineScope

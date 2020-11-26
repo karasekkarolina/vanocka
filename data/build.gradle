@@ -14,4 +14,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "io.reactivex.rxjava3:rxkotlin:$rx_kotlin_version"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.1"
+
+    // Tests
+    testImplementation "junit:junit:$test_junit_version"
+    testImplementation 'org.mockito:mockito-core:3.5.13'
 }
