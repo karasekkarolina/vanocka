@@ -6,6 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 
 /**
+ * Room database object with 3 given entities [CartItemDb], [ProductDb], [ProfileDb]
+ *
  * @author Karolina Klepackova on 23.11.2020.
  */
 @Database(

@@ -12,6 +12,9 @@ import kotlinx.android.synthetic.main.fragment_products.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
+ * Fragment that handles UI for products list
+ * @see BaseFragment
+ *
  * @author Karolina Klepackova on 21.11.2020.
  */
 class ProductsFragment : BaseFragment(R.layout.fragment_products) {
@@ -43,6 +46,7 @@ class ProductsFragment : BaseFragment(R.layout.fragment_products) {
         viewModel.products.observe(viewLifecycleOwner, {
             productAdapter.submitList(it)
             overlay.isVisible = false
+            swipe_layout.isRefreshing = false
         })
 
         viewModel.showEmptyState.observe(viewLifecycleOwner, {

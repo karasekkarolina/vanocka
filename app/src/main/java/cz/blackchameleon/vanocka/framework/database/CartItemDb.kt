@@ -5,9 +5,11 @@ import androidx.room.Entity
 import cz.blackchameleon.domain.CartItem
 
 /**
+ * Cart item entity representation in DB
+ * Defines DB table
+ *
  * @author Karolina Klepackova on 23.11.2020.
  */
-
 @Entity(tableName = "cartItems")
 class CartItemDb(
     id: String,
@@ -26,6 +28,9 @@ class CartItemDb(
     price = price,
     unit = unit
 ) {
+    /**
+     * Conversion of DB object into [CartItem]
+     */
     fun toCartItem(): CartItem = CartItem(
         id = this.id,
         name = this.name,

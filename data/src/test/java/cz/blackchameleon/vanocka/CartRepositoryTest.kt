@@ -1,4 +1,6 @@
-import cz.blackchameleon.data.LocalResult
+package cz.blackchameleon.vanocka
+
+import cz.blackchameleon.data.Result
 import cz.blackchameleon.data.local.LocalCartSource
 import cz.blackchameleon.data.remote.RemoteCartSource
 import cz.blackchameleon.data.repository.CartRepository
@@ -14,6 +16,8 @@ import org.mockito.junit.MockitoJUnitRunner
 import java.lang.RuntimeException
 
 /**
+ * Test class for cart repository logic
+ *
  * @author Karolina Klepackova on 26.11.2020.
  */
 
@@ -25,7 +29,7 @@ class CartRepositoryTest {
     @Mock
     lateinit var remoteCartSource: RemoteCartSource
 
-    lateinit var cartRepository: CartRepository
+    private lateinit var cartRepository: CartRepository
 
     private val firstCartItem = CartItem(
         id = "firstItem",
@@ -83,7 +87,7 @@ class CartRepositoryTest {
 
             val cartItems = cartRepository.getCartItems()
             assert(
-                cartItems is LocalResult.Success && cartItems.data == listOf(
+                cartItems is Result.Success && cartItems.data == listOf(
                     firstCartItem,
                     secondCartItem
                 )
@@ -100,14 +104,13 @@ class CartRepositoryTest {
 
             val cartItems = cartRepository.getCartItems()
             assert(
-                cartItems is LocalResult.Success && cartItems.data == listOf(
+                cartItems is Result.Success && cartItems.data == listOf(
                     firstCartItem,
                     secondCartItem
                 )
             )
         }
     }
-
 
     @Test
     fun `pass when cart items loading throws exception`() {
@@ -119,7 +122,7 @@ class CartRepositoryTest {
                 .fetchCartItems()
 
             val cartItems = cartRepository.getCartItems()
-            assert(cartItems is LocalResult.Error)
+            assert(cartItems is Result.Error)
         }
     }
 }

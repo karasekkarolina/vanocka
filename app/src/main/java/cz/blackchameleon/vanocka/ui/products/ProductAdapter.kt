@@ -48,7 +48,7 @@ class ProductAdapter(
                     }
                     removeOnGlobalLayoutListener {}
                 }
-                product_price.text = "${item.price} CZK"
+                "${item.price} CZK".also { product_price.text = it }
                 product_unit.text = resources.getString(R.string.product_unit, item.unit)
 
                 main_content.setOnClickListener {

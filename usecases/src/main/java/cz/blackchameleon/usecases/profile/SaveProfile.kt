@@ -4,6 +4,9 @@ import cz.blackchameleon.data.repository.ProfileRepository
 import cz.blackchameleon.domain.Profile
 
 /**
+ * Use case that saves given profile
+ * @param profileRepository Repository [ProfileRepository]
+ *
  * @author Karolina Klepackova on 24.11.2020.
  */
 class SaveProfile(

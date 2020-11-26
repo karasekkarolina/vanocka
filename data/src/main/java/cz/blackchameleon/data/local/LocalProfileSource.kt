@@ -3,6 +3,8 @@ package cz.blackchameleon.data.local
 import cz.blackchameleon.domain.Profile
 
 /**
+ * Interface specifying possible actions with locally stored data source of profiles in framework layer
+ *
  * @author Karolina Klepackova on 23.11.2020.
  */
 

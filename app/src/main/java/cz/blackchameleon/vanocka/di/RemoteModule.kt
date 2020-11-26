@@ -9,6 +9,8 @@ import cz.blackchameleon.vanocka.framework.remote.RemoteProfileSourceImpl
 import org.koin.dsl.module
 
 /**
+ * Koin module for remote sources
+ *
  * @author Karolina Klepackova on 24.11.2020.
  */
 val remoteModule = module {

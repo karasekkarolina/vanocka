@@ -2,7 +2,7 @@ package cz.blackchameleon.vanocka.ui.products
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import cz.blackchameleon.data.LocalResult
+import cz.blackchameleon.data.Result
 import cz.blackchameleon.domain.Product
 import cz.blackchameleon.usecases.products.GetProducts
 import cz.blackchameleon.vanocka.R
@@ -12,6 +12,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
+ * View model that provides information what to display in view represented by [ProductsFragment]
+ * @see BaseViewModel
+ *
+ * @param getProducts Use case [GetProducts]
+ *
  * @author Karolina Klepackova on 21.11.2020.
  */
 
@@ -30,10 +35,10 @@ class ProductsViewModel(
         CoroutineScope(Dispatchers.IO).launch {
             getProducts().let {
                 when (it) {
-                    is LocalResult.Success -> {
+                    is Result.Success -> {
                         _products.postValue(it.data)
                     }
-                    is LocalResult.Error -> {
+                    is Result.Error -> {
                         _showError.postValue(R.string.products_loading_failed)
                     }
                 }

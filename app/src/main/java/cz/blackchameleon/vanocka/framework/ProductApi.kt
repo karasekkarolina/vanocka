@@ -5,9 +5,10 @@ import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 
 /**
+ * Interface for products API calls
+ *
  * @author Karolina Klepackova on 23.11.2020.
  */
-
 interface ProductApi {
 
     // Returns product by id

@@ -6,6 +6,9 @@ import androidx.room.PrimaryKey
 import cz.blackchameleon.domain.Profile
 
 /**
+ * Profile entity representation in DB
+ * Defines DB table
+ *
  * @author Karolina Klepackova on 23.11.2020.
  */
 @Entity(tableName = "users")
@@ -19,6 +22,9 @@ open class ProfileDb(
     @ColumnInfo(name = "credits")
     var credits: Int
 ) {
+    /**
+     * Conversion of DB object into [Profile]
+     */
     fun toProfile(): Profile = Profile(
         id = this.id,
         photo = this.photo,

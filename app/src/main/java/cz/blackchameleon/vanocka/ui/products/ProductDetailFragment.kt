@@ -11,6 +11,9 @@ import kotlinx.android.synthetic.main.fragment_product_detail.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
+ * Fragment that handles UI for product detail
+ * @see BaseFragment
+ *
  * @author Karolina Klepackova on 22.11.2020.
  */
 
@@ -32,7 +35,7 @@ class ProductDetailFragment : BaseFragment(R.layout.fragment_product_detail) {
             product_image.setImage(product.image)
             product_name.text = product.name
             product_title.text = product.title
-            product_price.text = "${product.price} CZK"
+            "${product.price} CZK".also { product_price.text = it }
             product_unit.text = resources.getString(R.string.product_unit, product.unit)
             overlay.isVisible = false
         })

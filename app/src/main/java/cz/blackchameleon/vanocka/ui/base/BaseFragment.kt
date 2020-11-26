@@ -7,9 +7,10 @@ import androidx.fragment.app.Fragment
 import cz.blackchameleon.vanocka.R
 
 /**
+ * Base fragment class that provides common functionality of fragments
+ *
  * @author Karolina Klepackova on 22.11.2020.
  */
-
 abstract class BaseFragment(layout: Int) : Fragment(layout) {
 
     abstract val viewModel: BaseViewModel

@@ -7,6 +7,9 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 /**
+ * Remote source implementation for getting profile from API
+ * Implementation of [RemoteProfileSource]
+ *
  * @author Karolina Klepackova on 24.11.2020.
  */
 class RemoteProfileSourceImpl(private val profileApi: ProfileApi) : RemoteProfileSource {

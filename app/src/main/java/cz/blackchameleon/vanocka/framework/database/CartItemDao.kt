@@ -4,6 +4,10 @@ import androidx.room.Dao
 import androidx.room.Query
 
 /**
+ * DB operations for cart item
+ * Completes CRUD functions together with [BaseDao]
+ * @see BaseDao
+ *
  * @author Karolina Klepackova on 23.11.2020.
  */
 @Dao

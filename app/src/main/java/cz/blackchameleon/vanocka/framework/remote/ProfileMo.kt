@@ -5,6 +5,8 @@ import cz.blackchameleon.domain.Profile
 import kotlinx.android.parcel.Parcelize
 
 /**
+ * API object representation of profile
+ *
  * @author Karolina Klepackova on 22.11.2020.
  */
 @Parcelize

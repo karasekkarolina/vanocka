@@ -5,6 +5,8 @@ import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 
 /**
+ * Interface for profile items API calls
+ *
  * @author Karolina Klepackova on 25.11.2020.
  */
 interface ProfileApi {

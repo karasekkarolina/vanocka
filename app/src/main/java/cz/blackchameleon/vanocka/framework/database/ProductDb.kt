@@ -6,6 +6,9 @@ import androidx.room.PrimaryKey
 import cz.blackchameleon.domain.Product
 
 /**
+ * Product entity representation in DB
+ * Defines DB table
+ *
  * @author Karolina Klepackova on 23.11.2020.
  */
 @Entity(tableName = "products")
@@ -23,6 +26,9 @@ open class ProductDb(
     @ColumnInfo(name = "unit")
     var unit: String
 ) {
+    /**
+     * Conversion of DB object into [Product]
+     */
     fun toProduct(): Product = Product(
         id = this.id,
         name = this.name,

@@ -2,7 +2,7 @@ package cz.blackchameleon.vanocka.ui.profile
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import cz.blackchameleon.data.LocalResult
+import cz.blackchameleon.data.Result
 import cz.blackchameleon.domain.Profile
 import cz.blackchameleon.usecases.profile.DeleteProfile
 import cz.blackchameleon.usecases.profile.GetProfile
@@ -14,6 +14,13 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
+ * View model that provides information what to display in view represented by [ProfileFragment]
+ * @see BaseViewModel
+ *
+ * @param getProfile Use case [GetProfile]
+ * @param saveProfile Use case [SaveProfile]
+ * @param deleteProfile Use case [DeleteProfile]
+ *
  * @author Karolina Klepackova on 21.11.2020.
  */
 class ProfileViewModel(
@@ -33,10 +40,10 @@ class ProfileViewModel(
         CoroutineScope(Dispatchers.IO).launch {
             getProfile(TESTING_PROFILE_ID).let {
                 when (it) {
-                    is LocalResult.Success -> {
+                    is Result.Success -> {
                         _profile.postValue(it.data)
                     }
-                    is LocalResult.Error -> {
+                    is Result.Error -> {
                         _showError.postValue(R.string.profile_loading_failed)
                     }
                 }

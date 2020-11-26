@@ -8,6 +8,10 @@ import cz.blackchameleon.vanocka.framework.database.ProductDb
 import cz.blackchameleon.vanocka.framework.database.VanockaDatabase
 
 /**
+ * Local source implementation for getting products from DB
+ * Implementation of [LocalProductSource]
+ * @see LocalProductSource
+ *
  * @author Karolina Klepackova on 23.11.2020.
  */
 class LocalProductSourceImpl(

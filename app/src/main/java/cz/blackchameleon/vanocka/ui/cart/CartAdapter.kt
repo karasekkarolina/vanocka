@@ -12,6 +12,10 @@ import cz.blackchameleon.vanocka.extensions.setImage
 import kotlinx.android.synthetic.main.item_cart.view.*
 
 /**
+ * Adapter for cart items list
+ * Provides callback for onMinusClicked event handling that is used for count decreasing
+ * Provides callback for onPlusClicked event handling that is used for count increasing
+ *
  * @author Karolina Klepackova on 22.11.2020.
  */
 class CartAdapter(
@@ -50,7 +54,7 @@ class CartAdapter(
                     removeOnGlobalLayoutListener {}
                 }
                 product_amount.text = String.format("%.2f", item.amount)
-                product_price.text = "${item.price} CZK"
+                "${item.price} CZK".also { product_price.text = it }
                 product_unit.text = resources.getString(R.string.product_unit, item.unit)
                 amount_arrow_down.setOnClickListener {
                     onMinusClicked(item)

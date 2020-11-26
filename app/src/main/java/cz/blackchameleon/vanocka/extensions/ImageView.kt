@@ -7,6 +7,8 @@ import com.squareup.picasso.Transformation
 import cz.blackchameleon.vanocka.R
 
 /**
+ * Extension function that sets image into image view
+ *
  * @author Karolina Klepackova on 23.11.2020.
  */
 fun ImageView.setImage(imagePath: String?, placeholder: Int = R.color.background_placeholder) {

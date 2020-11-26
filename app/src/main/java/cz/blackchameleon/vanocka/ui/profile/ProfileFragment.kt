@@ -11,6 +11,9 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
+ * Fragment that handles UI for profile
+ * @see BaseFragment
+ *
  * @author Karolina Klepackova on 21.11.2020.
  */
 class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
@@ -47,6 +50,7 @@ class ProfileFragment : BaseFragment(R.layout.fragment_profile) {
             profile_credits.text = resources.getString(R.string.credits, profile.credits)
             profile_photo.setImage(profile.photo)
             overlay.isVisible = false
+            swipe_layout.isRefreshing = false
         })
 
         viewModel.showEmptyState.observe(viewLifecycleOwner, {

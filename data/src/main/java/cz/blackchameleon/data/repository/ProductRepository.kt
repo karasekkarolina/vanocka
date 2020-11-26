@@ -1,6 +1,6 @@
 package cz.blackchameleon.data.repository
 
-import cz.blackchameleon.data.LocalResult
+import cz.blackchameleon.data.Result
 import cz.blackchameleon.data.local.LocalProductSource
 import cz.blackchameleon.data.remote.RemoteProductSource
 import cz.blackchameleon.domain.Product
@@ -8,6 +8,11 @@ import kotlinx.coroutines.withContext
 import kotlin.coroutines.coroutineContext
 
 /**
+ * Uses data sources implementations for providing products data for use cases
+ *
+ * @param localProductSource Local source [LocalProductSource]
+ * @param remoteProductSource Remote source [RemoteProductSource]
+ *
  * @author Karolina Klepackova on 23.11.2020.
  */
 
@@ -15,34 +20,34 @@ class ProductRepository(
     private val localProductSource: LocalProductSource,
     private val remoteProductSource: RemoteProductSource
 ) {
-    suspend fun getProduct(id: String): LocalResult<Product> =
+    suspend fun getProduct(id: String): Result<Product> =
         withContext(coroutineContext) {
             localProductSource.getProduct(id)?.let {
-                return@withContext LocalResult.Success(it)
+                return@withContext Result.Success(it)
             }
 
             try {
                 val product = remoteProductSource.fetchProduct().blockingGet()
-                return@withContext LocalResult.Success(product)
+                return@withContext Result.Success(product)
             } catch (e: RuntimeException) {
-                return@withContext LocalResult.Error<Product>(e.message)
+                return@withContext Result.Error<Product>(e.message)
             }
         }
 
-    suspend fun getAllProducts(): LocalResult<List<Product>> =
+    suspend fun getAllProducts(): Result<List<Product>> =
         withContext(coroutineContext) {
             localProductSource.getAllProducts()?.let {
                 if (it.isNotEmpty()) {
-                    return@withContext LocalResult.Success(it)
+                    return@withContext Result.Success(it)
                 }
             }
 
             try {
                 val products = remoteProductSource.fetchProducts().blockingGet()
                 saveProducts(products)
-                return@withContext LocalResult.Success(products)
+                return@withContext Result.Success(products)
             } catch (e: RuntimeException) {
-                return@withContext LocalResult.Error<List<Product>>(e.message)
+                return@withContext Result.Error<List<Product>>(e.message)
             }
         }
 

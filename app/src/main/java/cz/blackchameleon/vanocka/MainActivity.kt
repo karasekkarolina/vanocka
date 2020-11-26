@@ -15,6 +15,10 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 
 /**
+ * Main activity in single activity architecture.
+ *
+ * @see AppCompatActivity
+ *
  * @author Karolina Klepackova on 21.11.2020.
  */
 

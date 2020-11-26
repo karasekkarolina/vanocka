@@ -7,6 +7,9 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 /**
+ * Remote source implementation for getting products from API
+ * Implementation of [RemoteProductSource]
+ *
  * @author Karolina Klepackova on 24.11.2020.
  */
 class RemoteProductSourceImpl(private val productApi: ProductApi) : RemoteProductSource {

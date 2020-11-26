@@ -13,6 +13,8 @@ import retrofit2.converter.moshi.MoshiConverterFactory
 import java.util.concurrent.TimeUnit
 
 /**
+ * Koin module for retrofit
+ *
  * @author Karolina Klepackova on 23.11.2020.
  */
 val retrofitModule = module {

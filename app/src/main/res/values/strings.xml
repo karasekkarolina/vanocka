@@ -25,5 +25,6 @@
     <string name="profile_delete">Delete profile</string>
     <string name="does_nothing">Does nothing</string>
     <string name="profile_loading_failed">Profile loading failed</string>
+    <string name="content_arrow">arrow</string>
 
 </resources>

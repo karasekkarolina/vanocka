@@ -6,6 +6,8 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Update
 
 /**
+ * Base data access object with create, update, delete operations for DB
+ *
  * @author Karolina Klepackova on 23.11.2020.
  */
 interface BaseDao<T> {

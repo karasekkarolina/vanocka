@@ -8,6 +8,10 @@ import cz.blackchameleon.vanocka.framework.database.CartItemDb
 import cz.blackchameleon.vanocka.framework.database.VanockaDatabase
 
 /**
+ * Local source implementation for getting cart items from DB
+ * Implementation of [LocalCartSource]
+ * @see LocalCartSource
+ *
  * @author Karolina Klepackova on 23.11.2020.
  */
 class LocalCartSourceImpl(

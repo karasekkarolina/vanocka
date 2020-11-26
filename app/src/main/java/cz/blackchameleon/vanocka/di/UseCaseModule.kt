@@ -9,6 +9,8 @@ import cz.blackchameleon.usecases.profile.SaveProfile
 import org.koin.dsl.module
 
 /**
+ * Koin module for use cases
+ *
  * @author Karolina Klepackova on 23.11.2020.
  */
 val useCaseModule = module {

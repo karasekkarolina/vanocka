@@ -2,7 +2,7 @@ package cz.blackchameleon.vanocka.ui.cart
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import cz.blackchameleon.data.LocalResult
+import cz.blackchameleon.data.Result
 import cz.blackchameleon.domain.CartItem
 import cz.blackchameleon.usecases.cart.GetCartItems
 import cz.blackchameleon.vanocka.R
@@ -12,6 +12,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 /**
+ * View model that provides information what to display in view represented by [CartFragment]
+ * @see BaseViewModel
+ *
+ * @param getCartItems Use case [GetCartItems]
+ *
  * @author Karolina Klepackova on 21.11.2020.
  */
 class CartViewModel(
@@ -28,10 +33,10 @@ class CartViewModel(
         CoroutineScope(Dispatchers.IO).launch {
             getCartItems().let {
                 when (it) {
-                    is LocalResult.Success -> {
+                    is Result.Success -> {
                         _cartItems.postValue(it.data)
                     }
-                    is LocalResult.Error -> {
+                    is Result.Error -> {
                         _showError.postValue(R.string.cart_items_loading_failed)
                     }
                 }
@@ -41,9 +46,9 @@ class CartViewModel(
 
     fun onMinusClicked(cartItem: CartItem) {
         if (cartItem.amount > 0) {
-            val updatedList = cartItems.value?.let {
-                val x = it.toMutableList()
-                x[it.indexOfFirst { it.id == cartItem.id }] = CartItem(
+            _cartItems.postValue(cartItems.value?.let {
+                val updatedList = it.toMutableList()
+                updatedList[it.indexOfFirst { it.id == cartItem.id }] = CartItem(
                     id = cartItem.id,
                     name = cartItem.name,
                     title = cartItem.title,
@@ -52,16 +57,15 @@ class CartViewModel(
                     price = cartItem.price,
                     unit = cartItem.unit
                 )
-                x
-            } ?: emptyList()
-            _cartItems.postValue(updatedList)
+                updatedList
+            } ?: emptyList())
         }
     }
 
     fun onPlusClicked(cartItem: CartItem) {
-        val updatedList = cartItems.value?.let {
-            val x = it.toMutableList()
-            x[it.indexOfFirst { it.id == cartItem.id }] = CartItem(
+        _cartItems.postValue(cartItems.value?.let {
+            val updatedList = it.toMutableList()
+            updatedList[it.indexOfFirst { it.id == cartItem.id }] = CartItem(
                 id = cartItem.id,
                 name = cartItem.name,
                 title = cartItem.title,
@@ -70,9 +74,8 @@ class CartViewModel(
                 price = cartItem.price,
                 unit = cartItem.unit
             )
-            x
-        } ?: emptyList()
-        _cartItems.postValue(updatedList)
+            updatedList
+        } ?: emptyList())
         _cartItems.value = cartItems.value
     }
 }

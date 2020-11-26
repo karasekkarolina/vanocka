@@ -9,6 +9,8 @@ import cz.blackchameleon.vanocka.framework.local.LocalProfileSourceImpl
 import org.koin.dsl.module
 
 /**
+ * Koin module for local sources
+ *
  * @author Karolina Klepackova on 24.11.2020.
  */
 val localModule = module {

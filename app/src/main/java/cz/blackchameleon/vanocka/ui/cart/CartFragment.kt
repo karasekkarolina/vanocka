@@ -11,6 +11,9 @@ import kotlinx.android.synthetic.main.fragment_cart.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
+ * Fragment that handles UI for cart items list
+ * @see BaseFragment
+ *
  * @author Karolina Klepackova on 21.11.2020.
  */
 class CartFragment : BaseFragment(R.layout.fragment_cart) {
@@ -39,6 +42,7 @@ class CartFragment : BaseFragment(R.layout.fragment_cart) {
         viewModel.cartItems.observe(viewLifecycleOwner, {
             cartAdapter.submitList(it)
             overlay.isVisible = false
+            swipe_layout.isRefreshing = false
         })
         viewModel.showEmptyState.observe(viewLifecycleOwner, {
             no_data_text.isVisible = true
