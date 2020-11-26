@@ -3,6 +3,7 @@ import cz.blackchameleon.data.local.LocalCartSource
 import cz.blackchameleon.data.remote.RemoteCartSource
 import cz.blackchameleon.data.repository.CartRepository
 import cz.blackchameleon.domain.CartItem
+import io.reactivex.rxjava3.core.Single
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
@@ -10,6 +11,7 @@ import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito.*
 import org.mockito.junit.MockitoJUnitRunner
+import java.lang.RuntimeException
 
 /**
  * @author Karolina Klepackova on 26.11.2020.
@@ -25,20 +27,20 @@ class CartRepositoryTest {
 
     lateinit var cartRepository: CartRepository
 
-    val firstCartItem = CartItem(
+    private val firstCartItem = CartItem(
         id = "firstItem",
         name = "Rohlik",
-        title = "Brambory Brambory Brambory Brambory Brambory",
+        title = "Brambory",
         image = "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=300,h=300/https://cdn.rohlik.cz/images/grocery/products/1326173/1326173-1528784439.jpg",
         amount = 15f,
         price = 21.3f,
         unit = "ks"
     )
 
-    val secondCartItem = CartItem(
+    private val secondCartItem = CartItem(
         id = "secondItem",
         name = "Brambory",
-        title = "Rohlik Rohlik Rohlik Rohlik Rohlik Rohlik",
+        title = "Rohlik",
         image = "https://www.rohlik.cz/cdn-cgi/image/f=auto,w=300,h=300/https://cdn.rohlik.cz/images/grocery/products/1326173/1326173-1528784439.jpg",
         amount = 15f,
         price = 21.3f,
@@ -89,4 +91,35 @@ class CartRepositoryTest {
         }
     }
 
+    @Test
+    fun `pass when cart items are loaded from api`() {
+        runBlocking {
+            doReturn(Single.just(listOf(firstCartItem, secondCartItem)))
+                .`when`(remoteCartSource)
+                .fetchCartItems()
+
+            val cartItems = cartRepository.getCartItems()
+            assert(
+                cartItems is LocalResult.Success && cartItems.data == listOf(
+                    firstCartItem,
+                    secondCartItem
+                )
+            )
+        }
+    }
+
+
+    @Test
+    fun `pass when cart items loading throws exception`() {
+        val exception = mock(RuntimeException::class.java)
+
+        runBlocking {
+            doThrow(exception)
+                .`when`(remoteCartSource)
+                .fetchCartItems()
+
+            val cartItems = cartRepository.getCartItems()
+            assert(cartItems is LocalResult.Error)
+        }
+    }
 }
