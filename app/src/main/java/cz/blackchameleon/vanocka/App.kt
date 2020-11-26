@@ -4,7 +4,6 @@ import android.app.Application
 import cz.blackchameleon.vanocka.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
-import timber.log.Timber
 
 /**
  * App
@@ -18,10 +17,6 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
-        if (BuildConfig.DEBUG) {
-            Timber.plant(Timber.DebugTree())
-        }
 
         // Dependency injection made by insert-koin.io (see https://insert-koin.io)
         startKoin {

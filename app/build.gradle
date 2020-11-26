@@ -61,7 +61,6 @@ dependencies {
     implementation "org.koin:koin-androidx-scope:$koin_version"
 
     // Others
-    implementation "com.jakewharton.timber:timber:$timber_version"
     implementation "com.makeramen:roundedimageview:$rounded_view_version"
     implementation "com.squareup.picasso:picasso:$picasso_version"
 
