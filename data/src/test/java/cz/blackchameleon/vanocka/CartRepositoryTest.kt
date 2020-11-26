@@ -71,8 +71,8 @@ class CartRepositoryTest {
     @Test
     fun `pass when cart items are saved`() {
         runBlocking {
-            cartRepository.saveCartItem(firstCartItem)
-            verify(localCartSource, times(1)).saveCartItem(firstCartItem)
+            cartRepository.saveCartItems(listOf(firstCartItem, firstCartItem))
+            verify(localCartSource, times(2)).saveCartItem(firstCartItem)
         }
     }
 
